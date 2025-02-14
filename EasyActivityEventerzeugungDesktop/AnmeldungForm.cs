@@ -37,7 +37,13 @@ namespace EasyActivityEventerzeugungDesktop
                     return null;
                 } else {
                     var jsonStream = response.Content.ReadAsStream();
-                    return JsonSerializer.Deserialize<Token>(jsonStream);
+                    var test = response.Content.ReadAsStringAsync().Result;
+                    var token = JsonSerializer.Deserialize<Token>(jsonStream);
+                    if (token?.IstEventveranstalter == true) {
+                        return token;
+                    } else { 
+                        return null;
+                    }
                 }
             }
         }
@@ -63,5 +69,8 @@ namespace EasyActivityEventerzeugungDesktop
 
         [JsonPropertyName("token_type")]
         public string TokenType { get; set; }
+
+        [JsonPropertyName("IstEventveranstalter")]
+        public bool IstEventveranstalter { get; set; }
     }
 }
