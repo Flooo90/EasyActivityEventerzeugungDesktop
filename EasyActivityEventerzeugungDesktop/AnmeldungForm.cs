@@ -11,28 +11,23 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace EasyActivityEventerzeugungDesktop
-{
-    public partial class AnmeldungForm : Form
-    {
+namespace EasyActivityEventerzeugungDesktop {
+    public partial class AnmeldungForm:Form {
 
         public EventHandler<Token> AnmeldungErfolgreich;
-        public AnmeldungForm()
-        {
+        public AnmeldungForm () {
             InitializeComponent();
         }
 
-        private Token checkAnmeldung() {
-            using (HttpClient client = new HttpClient())
-            {
+        private Token checkAnmeldung () {
+            using (HttpClient client = new HttpClient()) {
                 client.BaseAddress = new Uri("https://easy-activity-api.vercel.app/");
-                var anmeldedaten = new FormUrlEncodedContent(new Dictionary<string, string> {
+                var anmeldedaten = new FormUrlEncodedContent(new Dictionary<string,string> {
                     { "username", nutzernameTextBox.Text },
                     { "password", passwortTextBox.Text }
                 });
-                var response = client.PostAsync("token", anmeldedaten).Result;
-                if(!response.IsSuccessStatusCode)
-                {
+                var response = client.PostAsync("token",anmeldedaten).Result;
+                if (!response.IsSuccessStatusCode) {
                     MessageBox.Show("Anmeldung fehlgeschlagen");
                     return null;
                 } else {
@@ -40,22 +35,22 @@ namespace EasyActivityEventerzeugungDesktop
                     var token = JsonSerializer.Deserialize<Token>(jsonStream);
                     if (token?.IstEventveranstalter == true) {
                         return token;
-                    } else { 
+                    } else {
                         return null;
                     }
                 }
             }
         }
 
-        private void abbrechenButton_Click(object sender, EventArgs e) {
+        private void abbrechenButton_Click (object sender,EventArgs e) {
             Application.Exit();
         }
 
-        private void anmeldenButton_Click(object sender, EventArgs e) {
+        private void anmeldenButton_Click (object sender,EventArgs e) {
             anmeldenButton.Enabled = abbrechenButton.Enabled = false;
             Token userToken = checkAnmeldung();
             if (userToken != null) {
-                AnmeldungErfolgreich?.Invoke(this, userToken);
+                AnmeldungErfolgreich?.Invoke(this,userToken);
                 this.Close();
                 this.Dispose();
             }

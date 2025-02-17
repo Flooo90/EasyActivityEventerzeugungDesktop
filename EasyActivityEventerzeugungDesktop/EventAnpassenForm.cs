@@ -17,11 +17,11 @@ namespace EasyActivityEventerzeugungDesktop {
             this.token = token;
         }
 
-        public EventAnpassenForm (Token token,EventDaten aktivität): this(token) {
+        public EventAnpassenForm (Token token,EventDaten aktivität) : this(token) {
             eventnameTextBox.Text = aktivität.Titel;
             eventbeschreibungRichTextBox.Text = aktivität.Beschreibung;
             eventstartDateTimePicker.Value = aktivität.Startzeitpunkt;
-            if(aktivität.Endzeitpunkt != DateTime.MinValue) {
+            if (aktivität.Endzeitpunkt != DateTime.MinValue) {
                 eventEndeCheckBox.Checked = true;
                 eventendeDateTimePicker.Value = aktivität.Endzeitpunkt;
             }
@@ -30,7 +30,7 @@ namespace EasyActivityEventerzeugungDesktop {
             postleitzahlTextBox.Text = aktivität.Postleitzahl;
             straßeTextBox.Text = aktivität.Straße;
             hausnummerTextBox.Text = aktivität.Hausnummer;
-            bearbeitetEvent = (true,aktivität.AktivitätID);
+            bearbeitetEvent = (true, aktivität.AktivitätID);
         }
 
         Token token;
@@ -57,7 +57,7 @@ namespace EasyActivityEventerzeugungDesktop {
         private bool bearbeitenEventInDatenbank (Token token,long id) {
             using (HttpClient client = new HttpClient()) {
                 client.BaseAddress = new Uri("https://easy-activity-api.vercel.app/");
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",token.AccessToken);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(token.TokenType,token.AccessToken);
                 var eventdaten = new Dictionary<string,object> {
                     { "Titel", eventnameTextBox.Text },
                     { "Beschreibung", eventbeschreibungRichTextBox.Text },
@@ -89,7 +89,7 @@ namespace EasyActivityEventerzeugungDesktop {
         private bool erstelleEventInDatenbank (Token token) {
             using (HttpClient client = new HttpClient()) {
                 client.BaseAddress = new Uri("https://easy-activity-api.vercel.app/");
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",token.AccessToken);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(token.TokenType,token.AccessToken);
                 var eventdaten = new Dictionary<string,object> {
                     { "Titel", eventnameTextBox.Text },
                     { "Beschreibung", eventbeschreibungRichTextBox.Text },
@@ -124,6 +124,6 @@ namespace EasyActivityEventerzeugungDesktop {
                 this.Dispose();
             }
         }
-        private (bool bearbeiten,long id) bearbeitetEvent = (false,long.MinValue);
+        private (bool bearbeiten, long id) bearbeitetEvent = (false, long.MinValue);
     }
 }

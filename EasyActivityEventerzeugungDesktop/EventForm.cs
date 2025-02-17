@@ -20,7 +20,7 @@ namespace EasyActivityEventerzeugungDesktop {
             using (HttpClient client = new HttpClient()) {
                 List<EventDaten> aktivitäten = new List<EventDaten>();
                 client.BaseAddress = new Uri("https://easy-activity-api.vercel.app/");
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer",token.AccessToken);
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(token.TokenType,token.AccessToken);
                 var response = client.GetAsync("Aktivitaet/MeineAktivitaeten").Result;
                 if (!response.IsSuccessStatusCode) {
                     return aktivitäten;
