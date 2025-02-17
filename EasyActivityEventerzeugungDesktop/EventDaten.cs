@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace EasyActivityEventerzeugungDesktop
@@ -15,31 +16,34 @@ namespace EasyActivityEventerzeugungDesktop
                 switch (eventData.Key)
                 {
                     case "Titel":
-                        Titel = (string)eventData.Value;
+                        Titel = JsonSerializer.Deserialize <string>((JsonElement)eventData.Value);
                         break;
                     case "Beschreibung":
-                        Beschreibung = (string)eventData.Value;
+                        Beschreibung = JsonSerializer.Deserialize<string>((JsonElement)eventData.Value);
                         break;
                     case "Ort":
-                        Ort = (string)eventData.Value;
+                        Ort = JsonSerializer.Deserialize<string>((JsonElement)eventData.Value);
                         break;
                     case "Staat":
-                        Staat = (string)eventData.Value;
+                        Staat = JsonSerializer.Deserialize<string>((JsonElement)eventData.Value);
                         break;
                     case "Straße":
-                        Straße = (string)eventData.Value;
+                        Straße = JsonSerializer.Deserialize<string>((JsonElement)eventData.Value);
                         break;
                     case "Hausnummer":
-                        Hausnummer = (string)eventData.Value;
+                        Hausnummer = JsonSerializer.Deserialize<string>((JsonElement)eventData.Value);
                         break;
                     case "Postleitzahl":
-                        Postleitzahl = (string)eventData.Value;
+                        Postleitzahl = JsonSerializer.Deserialize<string>((JsonElement)eventData.Value);
                         break;
                     case "Startzeitpunkt":
-                        Startzeitpunkt = (DateTime)eventData.Value;
+                        Startzeitpunkt = JsonSerializer.Deserialize<DateTime>((JsonElement)eventData.Value);
                         break;
                     case "Endzeitpunkt":
-                        Endzeitpunkt = (DateTime)eventData.Value;
+                        Endzeitpunkt = JsonSerializer.Deserialize<DateTime>((JsonElement)eventData.Value);
+                        break;
+                    case "AktivitätID":
+                        AktivitätID = JsonSerializer.Deserialize<long>((JsonElement)eventData.Value);
                         break;
                     default:
                         break;

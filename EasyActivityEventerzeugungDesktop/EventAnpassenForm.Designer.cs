@@ -38,7 +38,7 @@
             eventstartDateTimePicker = new DateTimePicker();
             eventendeDateTimePicker = new DateTimePicker();
             eventnameTextBox = new TextBox();
-            beschreibungRichTextBox = new RichTextBox();
+            eventbeschreibungRichTextBox = new RichTextBox();
             staatLabel = new Label();
             ortLabel = new Label();
             staatTextBox = new TextBox();
@@ -70,6 +70,7 @@
             abbrechenButton.TabIndex = 1;
             abbrechenButton.Text = "Abbrechen";
             abbrechenButton.UseVisualStyleBackColor = true;
+            abbrechenButton.Click += abbrechenButton_Click;
             // 
             // allgemeineDatenLabel
             // 
@@ -143,13 +144,13 @@
             eventnameTextBox.Size = new Size(232, 27);
             eventnameTextBox.TabIndex = 11;
             // 
-            // beschreibungRichTextBox
+            // eventbeschreibungRichTextBox
             // 
-            beschreibungRichTextBox.Location = new Point(169, 97);
-            beschreibungRichTextBox.Name = "beschreibungRichTextBox";
-            beschreibungRichTextBox.Size = new Size(232, 113);
-            beschreibungRichTextBox.TabIndex = 12;
-            beschreibungRichTextBox.Text = "";
+            eventbeschreibungRichTextBox.Location = new Point(169, 97);
+            eventbeschreibungRichTextBox.Name = "eventbeschreibungRichTextBox";
+            eventbeschreibungRichTextBox.Size = new Size(232, 113);
+            eventbeschreibungRichTextBox.TabIndex = 12;
+            eventbeschreibungRichTextBox.Text = "";
             // 
             // staatLabel
             // 
@@ -258,7 +259,7 @@
             Controls.Add(staatTextBox);
             Controls.Add(ortLabel);
             Controls.Add(staatLabel);
-            Controls.Add(beschreibungRichTextBox);
+            Controls.Add(eventbeschreibungRichTextBox);
             Controls.Add(eventnameTextBox);
             Controls.Add(eventendeDateTimePicker);
             Controls.Add(eventstartDateTimePicker);
@@ -289,7 +290,7 @@
         private DateTimePicker eventstartDateTimePicker;
         private DateTimePicker eventendeDateTimePicker;
         private TextBox eventnameTextBox;
-        private RichTextBox beschreibungRichTextBox;
+        private RichTextBox eventbeschreibungRichTextBox;
         private Label staatLabel;
         private Label ortLabel;
         private TextBox staatTextBox;

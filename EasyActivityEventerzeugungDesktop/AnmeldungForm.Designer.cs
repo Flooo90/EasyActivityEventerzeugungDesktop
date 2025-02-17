@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AnmeldungForm));
             passwortTextBox = new TextBox();
             nutzernameTextBox = new TextBox();
             passwortLabel = new Label();
@@ -100,8 +101,8 @@
             Controls.Add(nutzernameTextBox);
             Controls.Add(passwortLabel);
             Controls.Add(nutzernameLabel);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "AnmeldungForm";
-            ShowIcon = false;
             Text = "Anmeldung";
             ResumeLayout(false);
             PerformLayout();

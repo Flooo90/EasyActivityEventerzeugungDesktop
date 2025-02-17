@@ -53,12 +53,14 @@ namespace EasyActivityEventerzeugungDesktop
         }
 
         private void anmeldenButton_Click(object sender, EventArgs e) {
+            anmeldenButton.Enabled = abbrechenButton.Enabled = false;
             Token userToken = checkAnmeldung();
             if (userToken != null) {
                 AnmeldungErfolgreich?.Invoke(this, userToken);
                 this.Close();
                 this.Dispose();
             }
+            anmeldenButton.Enabled = abbrechenButton.Enabled = true;
         }
     }
 
