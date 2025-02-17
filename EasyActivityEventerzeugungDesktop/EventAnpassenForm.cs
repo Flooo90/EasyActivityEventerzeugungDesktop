@@ -76,8 +76,6 @@ namespace EasyActivityEventerzeugungDesktop {
                     { "OffenesEnde",!eventEndeCheckBox.Checked }
                 };
                 var json = JsonSerializer.Serialize(eventdaten);
-
-                // JSON-Daten in den HTTP-Inhalt einfügen
                 var content = new StringContent(json,Encoding.UTF8,"application/json");
                 var response = client.PatchAsync($"Aktivitaet/{id}",content).Result;
                 if (response.IsSuccessStatusCode) {
@@ -110,8 +108,6 @@ namespace EasyActivityEventerzeugungDesktop {
                     { "OffenesEnde",!eventEndeCheckBox.Checked }
                 };
                 var json = JsonSerializer.Serialize(eventdaten);
-
-                // JSON-Daten in den HTTP-Inhalt einfügen
                 var content = new StringContent(json,Encoding.UTF8,"application/json");
                 var response = client.PostAsync("Aktivitaet",content).Result;
                 if (response.IsSuccessStatusCode) {

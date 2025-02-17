@@ -270,9 +270,11 @@
             Controls.Add(allgemeineDatenLabel);
             Controls.Add(abbrechenButton);
             Controls.Add(eventSpeichernButton);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             Name = "EventAnpassenForm";
             ShowIcon = false;
             ShowInTaskbar = false;
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Event Anpassen";
             ResumeLayout(false);
             PerformLayout();

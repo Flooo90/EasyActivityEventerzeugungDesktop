@@ -174,6 +174,7 @@
             Controls.Add(meineAktivitätenDataGridView);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "EventForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Eigene Events";
             ((System.ComponentModel.ISupportInitialize)meineAktivitätenDataGridView).EndInit();
             ((System.ComponentModel.ISupportInitialize)eventDatenBindingSource).EndInit();

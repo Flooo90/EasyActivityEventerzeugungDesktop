@@ -101,8 +101,10 @@
             Controls.Add(nutzernameTextBox);
             Controls.Add(passwortLabel);
             Controls.Add(nutzernameLabel);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "AnmeldungForm";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Anmeldung";
             ResumeLayout(false);
             PerformLayout();

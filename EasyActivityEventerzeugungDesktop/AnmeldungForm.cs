@@ -37,7 +37,6 @@ namespace EasyActivityEventerzeugungDesktop
                     return null;
                 } else {
                     var jsonStream = response.Content.ReadAsStream();
-                    var test = response.Content.ReadAsStringAsync().Result;
                     var token = JsonSerializer.Deserialize<Token>(jsonStream);
                     if (token?.IstEventveranstalter == true) {
                         return token;
@@ -62,17 +61,5 @@ namespace EasyActivityEventerzeugungDesktop
             }
             anmeldenButton.Enabled = abbrechenButton.Enabled = true;
         }
-    }
-
-    public class Token
-    {
-        [JsonPropertyName("access_token")]
-        public string AccessToken { get; set; }
-
-        [JsonPropertyName("token_type")]
-        public string TokenType { get; set; }
-
-        [JsonPropertyName("IstEventveranstalter")]
-        public bool IstEventveranstalter { get; set; }
     }
 }

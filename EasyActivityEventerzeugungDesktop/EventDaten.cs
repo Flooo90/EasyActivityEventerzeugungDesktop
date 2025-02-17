@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 namespace EasyActivityEventerzeugungDesktop
 {
     public class EventDaten {
-        public EventDaten(
-            Dictionary<string, object> eventDaten)
-        {
-            foreach (KeyValuePair<string, object> eventData in eventDaten)
-            {
-                switch (eventData.Key)
-                {
+
+        /// <summary> Konstruktor der anhand eines Dictonarys mit Stings als Keys und Objekten als Werten die EventDaten ermittelt </summary>
+        /// <param name="eventDaten"></param>
+        public EventDaten (
+            Dictionary<string,object> eventDaten) {
+            foreach (KeyValuePair<string,object> eventData in eventDaten) {
+                switch (eventData.Key) {
                     case "Titel":
-                        Titel = JsonSerializer.Deserialize <string>((JsonElement)eventData.Value);
+                        Titel = JsonSerializer.Deserialize<string>((JsonElement)eventData.Value);
                         break;
                     case "Beschreibung":
                         Beschreibung = JsonSerializer.Deserialize<string>((JsonElement)eventData.Value);
@@ -52,15 +52,34 @@ namespace EasyActivityEventerzeugungDesktop
             }
         }
 
+        /// <summary> Einndutiger Identifikator der Aktivität </summary>
         public long AktivitätID { get; set; }
+
+        /// <summary> Titel der Aktivität </summary>
         public string Titel { get; set; }
+
+        /// <summary> Beschreibung der Aktivität </summary>
         public string Beschreibung { get; set; }
-        public string Ort { get; set; }
+
+        /// <summary> Staat der zur Aktivität zugeordneten Adresse </summary>
         public string Staat { get; set; }
-        public string Straße { get; set; }
-        public string Hausnummer { get; set; }
+
+        /// <summary> Ort der zur Aktivität zugeordneten Adresse </summary>
+        public string Ort { get; set; }
+
+        /// <summary> Postleitzahl der zur Aktivität zugeordneten Adresse </summary>
         public string Postleitzahl { get; set; }
+
+        /// <summary> Straße der zur Aktivität zugeordneten Adresse </summary>
+        public string Straße { get; set; }
+
+        /// <summary> Hausnummer der zur Aktivität zugeordneten Adresse </summary>
+        public string Hausnummer { get; set; }
+
+        /// <summary> Startzeitpunkt der Aktivität </summary>
         public DateTime Startzeitpunkt { get; set; }
+
+        /// <summary> Endzeitpunkt der Aktivität </summary>
         public DateTime Endzeitpunkt { get; set; }
     }
 }

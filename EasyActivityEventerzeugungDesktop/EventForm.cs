@@ -26,7 +26,6 @@ namespace EasyActivityEventerzeugungDesktop {
                     return aktivitäten;
                 }
                 var jsonStream = response.Content.ReadAsStream();
-                var test = DateTime.MinValue;
                 var ApiAntworten = JsonSerializer.Deserialize<List<Dictionary<string,object>>>(jsonStream);
                 foreach (Dictionary<string,object> apiAntwort in ApiAntworten) {
                     aktivitäten.Add(new EventDaten(apiAntwort));
