@@ -26,8 +26,7 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
-        private void InitializeComponent()
-        {
+        private void InitializeComponent () {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AnmeldungForm));
             passwortTextBox = new TextBox();
             nutzernameTextBox = new TextBox();
@@ -39,41 +38,42 @@
             // 
             // passwortTextBox
             // 
-            passwortTextBox.Location = new Point(138, 57);
+            passwortTextBox.Location = new Point(138,57);
             passwortTextBox.Name = "passwortTextBox";
-            passwortTextBox.Size = new Size(193, 27);
+            passwortTextBox.Size = new Size(193,27);
             passwortTextBox.TabIndex = 7;
+            passwortTextBox.UseSystemPasswordChar = true;
             // 
             // nutzernameTextBox
             // 
-            nutzernameTextBox.Location = new Point(138, 12);
+            nutzernameTextBox.Location = new Point(138,12);
             nutzernameTextBox.Name = "nutzernameTextBox";
-            nutzernameTextBox.Size = new Size(193, 27);
+            nutzernameTextBox.Size = new Size(193,27);
             nutzernameTextBox.TabIndex = 6;
             // 
             // passwortLabel
             // 
             passwortLabel.AutoSize = true;
-            passwortLabel.Location = new Point(14, 60);
+            passwortLabel.Location = new Point(14,60);
             passwortLabel.Name = "passwortLabel";
-            passwortLabel.Size = new Size(69, 20);
+            passwortLabel.Size = new Size(69,20);
             passwortLabel.TabIndex = 5;
             passwortLabel.Text = "Passwort:";
             // 
             // nutzernameLabel
             // 
             nutzernameLabel.AutoSize = true;
-            nutzernameLabel.Location = new Point(14, 15);
+            nutzernameLabel.Location = new Point(14,15);
             nutzernameLabel.Name = "nutzernameLabel";
-            nutzernameLabel.Size = new Size(93, 20);
+            nutzernameLabel.Size = new Size(93,20);
             nutzernameLabel.TabIndex = 4;
             nutzernameLabel.Text = "Nutzername:";
             // 
             // anmeldenButton
             // 
-            anmeldenButton.Location = new Point(12, 107);
+            anmeldenButton.Location = new Point(12,107);
             anmeldenButton.Name = "anmeldenButton";
-            anmeldenButton.Size = new Size(94, 29);
+            anmeldenButton.Size = new Size(94,29);
             anmeldenButton.TabIndex = 8;
             anmeldenButton.Text = "Anmelden";
             anmeldenButton.UseVisualStyleBackColor = true;
@@ -81,9 +81,9 @@
             // 
             // abbrechenButton
             // 
-            abbrechenButton.Location = new Point(237, 107);
+            abbrechenButton.Location = new Point(237,107);
             abbrechenButton.Name = "abbrechenButton";
-            abbrechenButton.Size = new Size(94, 29);
+            abbrechenButton.Size = new Size(94,29);
             abbrechenButton.TabIndex = 9;
             abbrechenButton.Text = "Abbrechen";
             abbrechenButton.UseVisualStyleBackColor = true;
@@ -91,9 +91,9 @@
             // 
             // AnmeldungForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(8F,20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(347, 148);
+            ClientSize = new Size(347,148);
             ControlBox = false;
             Controls.Add(abbrechenButton);
             Controls.Add(anmeldenButton);
