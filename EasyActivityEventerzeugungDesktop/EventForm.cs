@@ -41,6 +41,7 @@ namespace EasyActivityEventerzeugungDesktop {
                 foreach (Dictionary<string,object> apiAntwort in ApiAntworten) {
                     aktivitäten.Add(new EventDaten(apiAntwort));
                 }
+                aktivitäten.FindAll(aktivität => aktivität.Startzeitpunkt < DateTime.Now).ForEach(aktivität => aktivitäten.Remove(aktivität));
                 return aktivitäten;
             }
         }
