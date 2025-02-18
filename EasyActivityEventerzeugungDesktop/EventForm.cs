@@ -3,6 +3,11 @@ using System.Text.Json;
 
 namespace EasyActivityEventerzeugungDesktop {
     public partial class EventForm:Form {
+        /// <summary> Initialisiert eine neue Instanz der <see cref="EventForm"/> Klasse.
+        /// Dieser Konstruktor initialisiert die Form-Komponenten und erstellt eine Instanz von 
+        /// <see cref="AnmeldungForm"/>. Er abonniert das <see cref="AnmeldungForm.AnmeldungErfolgreich"/> 
+        /// Ereignis mit der <see cref="handleAnmeldungErfolgreich"/> Methode und zeigt die 
+        /// <see cref="AnmeldungForm"/> als Dialog an </summary>
         public EventForm () {
             InitializeComponent();
             AnmeldungForm anmeldungForm = new AnmeldungForm();
@@ -10,48 +15,62 @@ namespace EasyActivityEventerzeugungDesktop {
             anmeldungForm.ShowDialog();
         }
 
+        /// <summary> Behandelt das erfolgreiche Anmeldeereignis </summary>
+        /// <param name="sender"> Die Quelle des Ereignisses </param>
+        /// <param name="token"> Das Token, das nach erfolgreicher Anmeldung empfangen wurde </param>
         private void handleAnmeldungErfolgreich (object sender,Token token) {
             this.nutzerToken = token;
-            var meineAktivit‰ten = abrufenMeineAktivit‰ten(token);
-            meineAktivit‰tenDataGridView.DataSource = meineAktivit‰ten;
+            var meineAktivit√§ten = abrufenMeineAktivit√§ten(token);
+            meineAktivit√§tenDataGridView.DataSource = meineAktivit√§ten;
         }
 
-        private List<EventDaten> abrufenMeineAktivit‰ten (Token token) {
+        /// <summary> Ruft die Aktivit√§ten des Benutzers ab, indem eine Anfrage an die Easy Activity API gesendet wird </summary>
+        /// <param name="token"> Das Token, das f√ºr die Authentifizierung gegen√ºber der API verwendet wird </param>
+        /// <returns> Eine Liste von <see cref="EventDaten"/>, die die Aktivit√§ten des Benutzers enth√§lt </returns>
+        private List<EventDaten> abrufenMeineAktivit√§ten (Token token) {
             using (HttpClient client = new HttpClient()) {
-                List<EventDaten> aktivit‰ten = new List<EventDaten>();
+                List<EventDaten> aktivit√§ten = new List<EventDaten>();
                 client.BaseAddress = new Uri("https://easy-activity-api.vercel.app/");
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(token.TokenType,token.AccessToken);
                 var response = client.GetAsync("Aktivitaet/MeineAktivitaeten").Result;
                 if (!response.IsSuccessStatusCode) {
-                    return aktivit‰ten;
+                    return aktivit√§ten;
                 }
                 var jsonStream = response.Content.ReadAsStream();
                 var ApiAntworten = JsonSerializer.Deserialize<List<Dictionary<string,object>>>(jsonStream);
                 foreach (Dictionary<string,object> apiAntwort in ApiAntworten) {
-                    aktivit‰ten.Add(new EventDaten(apiAntwort));
+                    aktivit√§ten.Add(new EventDaten(apiAntwort));
                 }
-                return aktivit‰ten;
+                return aktivit√§ten;
             }
         }
 
+        /// <summary> Wird aufgerufen, wenn der Button 'Neues Event Erstellen' geklickt wird.
+        /// √ñffnet ein neues Formular zur Anpassung eines Events und aktualisiert die Aktivit√§ten-Ansicht </summary>
+        /// <param name="sender"> Die Quelle des Ereignisses </param>
+        /// <param name="e"> Die <see cref="EventArgs"/> Instanz, die die Ereignisdaten enth√§lt </param>
         private void neuesEventErstellenButton_Click (object sender,EventArgs e) {
             EventAnpassenForm eventAnpassenForm = new EventAnpassenForm(nutzerToken);
             eventAnpassenForm.ShowDialog();
-            var meineAktivit‰ten = abrufenMeineAktivit‰ten(nutzerToken);
-            meineAktivit‰tenDataGridView.DataSource = meineAktivit‰ten;
+            var meineAktivit√§ten = abrufenMeineAktivit√§ten(nutzerToken);
+            meineAktivit√§tenDataGridView.DataSource = meineAktivit√§ten;
         }
 
-        private void gew‰hltesEventBearbeitenButton_Click (object sender,EventArgs e) {
+        /// <summary> Wird aufgerufen, wenn der Button 'Gew√§hltes Event Bearbeiten' geklickt wird.
+        /// √ñffnet ein neues Formular zur Bearbeitung des ausgew√§hlten Events und aktualisiert die Aktivit√§ten-Ansicht </summary>
+        /// <param name="sender"> Die Quelle des Ereignisses </param>
+        /// <param name="e"> Die <see cref="EventArgs"/> Instanz, die die Ereignisdaten enth√§lt </param>
+        private void gew√§hltesEventBearbeitenButton_Click (object sender,EventArgs e) {
             EventAnpassenForm eventAnpassenForm = new EventAnpassenForm(
                 nutzerToken,
-                (EventDaten)meineAktivit‰tenDataGridView.CurrentRow.DataBoundItem
+                (EventDaten)meineAktivit√§tenDataGridView.CurrentRow.DataBoundItem
             );
             eventAnpassenForm.ShowDialog();
-            var meineAktivit‰ten = abrufenMeineAktivit‰ten(nutzerToken);
-            meineAktivit‰tenDataGridView.DataSource = meineAktivit‰ten;
+            var meineAktivit√§ten = abrufenMeineAktivit√§ten(nutzerToken);
+            meineAktivit√§tenDataGridView.DataSource = meineAktivit√§ten;
         }
 
         private Token nutzerToken;
-        private List<EventDaten> aktivit‰ten;
+        private List<EventDaten> aktivit√§ten;
     }
 }
