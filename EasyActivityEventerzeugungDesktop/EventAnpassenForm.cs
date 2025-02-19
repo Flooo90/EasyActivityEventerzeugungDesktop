@@ -52,17 +52,18 @@ namespace EasyActivityEventerzeugungDesktop {
             if (bearbeitetEvent.bearbeiten) {
                 if (bearbeitenEventInDatenbank(token,bearbeitetEvent.id)) {
                     MessageBox.Show("Event erfolgreich bearbeitet");
+                    this.Close();
                 } else {
                     MessageBox.Show("Event konnte nicht bearbeitet werden");
                 }
             } else {
                 if (erstelleEventInDatenbank(token)) {
                     MessageBox.Show("Event erfolgreich erstellt");
+                    this.Close();
                 } else {
                     MessageBox.Show("Event konnte nicht erstellt werden");
                 }
             }
-            this.Close();
         }
 
         /// <summary> Aktualisiert ein Event in der Datenbank mit den angegebenen Details </summary>
